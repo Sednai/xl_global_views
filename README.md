@@ -18,35 +18,35 @@ _EXECUTE DIRECT_ requires superuser role for now, so the global views.
 
 The views created now are:
 
- pgxl_stat_all_tables
- pgxl_stat_archiver
- pgxl_stat_bgwriter
- pgxl_stat_database
- pgxl_stat_database_conflicts
- pgxl_statio_all_indexes
- pgxl_statio_all_sequences
- pgxl_statio_all_tables
- pgxl_statio_sys_indexes
- pgxl_statio_sys_sequences
- pgxl_statio_sys_tables
- pgxl_statio_user_indexes
- pgxl_statio_user_sequences
- pgxl_statio_user_tables
- pgxl_statistic
- pgxl_stat_replication
- pgxl_stat_activity
- pgxl_stat_all_indexes
- pgxl_stats
- pgxl_stat_ssl
- pgxl_stat_sys_indexes
- pgxl_stat_sys_tables
- pgxl_stat_user_functions
- pgxl_stat_user_indexes
- pgxl_stat_user_tables
- pgxl_stat_xact_all_tables
- pgxl_stat_xact_sys_tables
- pgxl_stat_xact_user_functions
- pgxl_stat_xact_user_tables
+* pgxl_stat_all_tables
+* pgxl_stat_archiver
+* pgxl_stat_bgwriter
+* pgxl_stat_database
+* pgxl_stat_database_conflicts
+* pgxl_statio_all_indexes
+* pgxl_statio_all_sequences
+* pgxl_statio_all_tables
+* pgxl_statio_sys_indexes
+* pgxl_statio_sys_sequences
+* pgxl_statio_sys_tables
+* pgxl_statio_user_indexes
+* pgxl_statio_user_sequences
+* pgxl_statio_user_tables
+* pgxl_statistic
+* pgxl_stat_replication
+* pgxl_stat_activity
+* pgxl_stat_all_indexes
+* pgxl_stats
+* pgxl_stat_ssl
+* pgxl_stat_sys_indexes
+* pgxl_stat_sys_tables
+* pgxl_stat_user_functions
+* pgxl_stat_user_indexes
+* pgxl_stat_user_tables
+* pgxl_stat_xact_all_tables
+* pgxl_stat_xact_sys_tables
+* pgxl_stat_xact_user_functions
+* pgxl_stat_xact_user_tables
 
 
 EXAMPLE
