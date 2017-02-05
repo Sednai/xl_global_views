@@ -50,5 +50,5 @@ for r in (
 end
 $_$ language plpgsql;
 
-select public.pgxl_create_views();
+-- select public.pgxl_create_views();
 
