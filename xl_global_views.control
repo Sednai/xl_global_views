@@ -1,0 +1,4 @@
+# xl_global_views extension
+comment = 'Creates several global pgxl_ views based on pg_ views aggregated from all nodes of the cluster. To each view two columns are added: node_name and node_type in front of the pg_views columns. Currently anyarray type is not supported and such columns are omitted (i.e. in pg_statistic)'
+default_version = '0.0.1'
+relocatable = false
