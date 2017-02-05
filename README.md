@@ -17,7 +17,8 @@ In the download directory:
 `	make install
 `
 then	
-    	CREATE EXTENSION xl_global_views ;
+
+	CREATE EXTENSION xl_global_views ;
 
 Then finally execute
 ```
