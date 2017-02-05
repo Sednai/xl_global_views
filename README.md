@@ -29,7 +29,7 @@ EXAMPLE
 	select * from pgxl_statio_all_tables where node_type = 'D' and relname = 'pg_class' limit 10;
 
 node_name | node_type | relid | schemaname | relname  | heap_blks_read | heap_blks_hit | idx_blks_read | idx_blks_hit | toast_blks_read | toast_blks_hit | tidx_blks_read | tidx_blks_hit
------------+-----------+-------+------------+----------+----------------+---------------+---------------+--------------+-----------------+----------------+----------------+---------------
+-----------|-----------|-------|------------|----------|----------------|---------------|---------------|--------------|-----------------|----------------|----------------|---------------
  datanode1 | D         |  1259 | pg_catalog | pg_class |           3918 |      58604308 |           259 |      3035480 |          [null] |         [null] |         [null] |        [null]
  datanode2 | D         |  1259 | pg_catalog | pg_class |           3745 |       2634617 |           613 |       141135 |          [null] |         [null] |         [null] |        [null]
  datanode3 | D         |  1259 | pg_catalog | pg_class |           3742 |        965008 |           395 |        41040 |          [null] |         [null] |         [null] |        [null]
