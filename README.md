@@ -57,7 +57,7 @@ The views created:
 * pgxl_stat_xact_user_tables
 
 
-EXAMPLE
+EXAMPLES
 -------
 
 	select * from pgxl_statio_all_tables where node_type = 'D' and relname = 'pg_class' limit 10;
@@ -74,7 +74,9 @@ node_name | node_type | relid | schemaname | relname  | heap_blks_read | heap_bl
  datanode8 | D         |  1259 | pg_catalog | pg_class |           3722 |        937601 |           212 |        37620 |          [null] |         [null] |         [null] |        [null]
 (8 rows)
 
-	select node_name, count(*) from pgxl_stat_activity group by 1 order by 1;
+On an idle cluster the number of sessions showed will be equal 1 per node.
+ 
+	select node_name, count(*) conns from pgxl_stat_activity group by 1 order by 1;
  node_name | count
 -----------|-------
  coord1    |     1
