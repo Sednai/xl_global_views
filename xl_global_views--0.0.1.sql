@@ -18,7 +18,6 @@ BEGIN
     return;    
 END
 $_$ LANGUAGE plpgsql;
-
 COMMENT ON FUNCTION pgxl_global_view(localTable text, fields text) is 'xl_global_views function to fetch data from all the nodes of the XL cluster, prefixing them with node_name and node_type.';
 
 -- create public views for anything that starts with pg_stat, omit anyarray

@@ -1,6 +1,6 @@
 # xl_global_views
 
-Postgres-XL Global Views extension
+Postgres-XL Global views extension
 ====================
 
 Extension xl_global_views is an extension to create global views from number of system tables aggregated from all nodes (both coordinators and datanodes).
@@ -11,7 +11,7 @@ Currently _EXECUTE DIRECT_ requires superuser role, hence views defined as well.
 
 INSTALLATION
 ------------
-Requirement: PostgreSQL-XL.
+Requirement: Postgres-XL.
 Extension is installed in the public schema and is not relocatable.
 
     	CREATE EXTENSION xl_global_views ;
@@ -99,7 +99,7 @@ On an idle cluster the number of sessions showed will be equal 1 per node.
 LICENSE AND COPYRIGHT
 ---------------------
 
-XL Global views extension is released under the PostgreSQL License, a liberal Open Source license, similar to the BSD or MIT licenses.
+xl_gloval_views extension is released under the PostgreSQL License, a liberal Open Source license, similar to the BSD or MIT licenses.
 
 Krzysztof Nienartowicz & Pavan Deolasee, 2017.
 
