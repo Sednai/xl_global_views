@@ -16,14 +16,15 @@ Extension is installed in the public schema and is not relocatable.
 
     	CREATE EXTENSION xl_global_views ;
 
-Then 
-	```sql
-	select public.pgxl_create_views(); 
-	```
+Then execute
+```
+select public.pgxl_create_views(); 
+```
+to finalize views creation.
 
 _EXECUTE DIRECT_ requires superuser role for now, so do the global views.
 
-The views created now are:
+The views created:
 
 * pgxl_stat_all_tables
 * pgxl_stat_archiver
@@ -72,6 +73,24 @@ node_name | node_type | relid | schemaname | relname  | heap_blks_read | heap_bl
  datanode7 | D         |  1259 | pg_catalog | pg_class |           3742 |        965008 |           395 |        41040 |          [null] |         [null] |         [null] |        [null]
  datanode8 | D         |  1259 | pg_catalog | pg_class |           3722 |        937601 |           212 |        37620 |          [null] |         [null] |         [null] |        [null]
 (8 rows)
+
+	select node_name, count(*) from pgxl_stat_activity group by 1 order by 1;
+ node_name | count
+-----------|-------
+ coord1    |     1
+ coord2    |     2
+ coord3    |     1
+ coord4    |     1
+ datanode1 |     1
+ datanode2 |     1
+ datanode3 |     1
+ datanode4 |     1
+ datanode5 |     1
+ datanode6 |     1
+ datanode7 |     1
+ datanode8 |     1
+(12 rows)
+
 
 	
 
