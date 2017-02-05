@@ -99,7 +99,7 @@ On an idle cluster the number of sessions showed will be equal 1 per node.
 LICENSE AND COPYRIGHT
 ---------------------
 
-xl_gloval_views extension is released under the PostgreSQL License, a liberal Open Source license, similar to the BSD or MIT licenses.
+xl_global_views extension is released under the PostgreSQL License, a liberal Open Source license, similar to the BSD or MIT licenses.
 
 Krzysztof Nienartowicz & Pavan Deolasee, 2017.
 
