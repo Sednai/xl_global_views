@@ -6,7 +6,7 @@ Postgres-XL Global views extension
 Extension xl_global_views is an extension to create global views from number of system tables aggregated from all nodes (both coordinators and datanodes).
 Each view has two additional columns prepend: node_name and node_type. 
 
-The extension uses _execute direct_ construct, be sure you use the XL version with a patch applied [execute direct cursor patch](https://git.postgresql.org/gitweb/?p=postgres-xl.git;a=commit;h=1b6ada225da45c82529d56f71e3c6a62fabcfd55) that addresses limitation of using cursors based on _execute direct_. Without this patch most of the views will not work and report SPI errors.
+The extension uses _execute direct_ construct, be sure you use the XL version with a [execute direct cursor patch](https://git.postgresql.org/gitweb/?p=postgres-xl.git;a=commit;h=1b6ada225da45c82529d56f71e3c6a62fabcfd55) applied that addresses limitation of using cursors based on _execute direct_. Without this patch most of the views will not work and report SPI errors.
 Currently _EXECUTE DIRECT_ requires superuser role, hence views defined as well.
 
 INSTALLATION
@@ -14,8 +14,8 @@ INSTALLATION
 Requirement: Postgres-XL.
 Extension is installed in the public schema and is not relocatable.
 In the download directory:
-```	make install
-```
+`	make install
+`
 then	
     	CREATE EXTENSION xl_global_views ;
 
