@@ -21,8 +21,6 @@ $_$ LANGUAGE plpgsql;
 
 COMMENT ON FUNCTION pgxl_global_view(localTable text, fields text) is 'xl_global_views function to fetch data from all the nodes of the XL cluster, prefixing them with node_name and node_type.';
 
--- select * from pgxl_global_view('pg_stat_activity') as  (nodename text, node_type text,datid oid, datname name, pid integer, usesysid oid, usename name, application_name text, client_addr inet, client_hostname text, client_port integer, backend_start timestamp with time zone, xact_start timestamp with time zone, query_start timestamp with time zone, state_change timestamp with time zone, waiting boolean, state text, backend_xid xid, backend_xmin xid, query text);
-
 -- create public views for anything that starts with pg_stat, omit anyarray
 CREATE FUNCTION public.pgxl_create_views() returns void as  
 $_$
