@@ -47,6 +47,6 @@ for r in (
     end loop;
 end
 $_$ language plpgsql;
-
+COMMENT ON FUNCTION public.pgxl_create_views() is 'xl_global_views function to define global views.';
 -- select public.pgxl_create_views();
 
