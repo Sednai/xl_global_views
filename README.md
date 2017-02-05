@@ -16,8 +16,7 @@ Extension is installed in the public schema and is not relocatable.
 
     	CREATE EXTENSION xl_global_views ;
 
-Then:
- 
+Then 
 	```sql
 	select public.pgxl_create_views(); 
 	```
