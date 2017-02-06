@@ -35,7 +35,7 @@ for r in (
     || '''::text) as (node_name text, node_type text,'
     || array_to_string(array_agg(column_name || ' '|| udt_name order by ordinal_position), ', ') || ');'  stmt
     from information_schema.columns c
-        where table_name ~ 'pg_stat'  and table_name !~ 'pgxl_'
+        where (table_name ~ 'pg_stat' or table_name='pg_locks') and table_name !~ 'pgxl_'
               and udt_name != 'anyarray'
     group by 1,2
     )
