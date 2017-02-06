@@ -14,9 +14,9 @@ INSTALLATION
 Requirement: Postgres-XL.
 Extension is installed in the public schema and is not relocatable.
 In the download directory:
-	make install
+	_make install_
 then
-	deploy all
+	_deploy all_
 
 then	
 
