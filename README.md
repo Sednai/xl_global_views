@@ -32,6 +32,7 @@ _EXECUTE DIRECT_ requires superuser role for now, so do the global views.
 
 The views created:
 
+* pgxl_locks
 * pgxl_stat_all_tables
 * pgxl_stat_archiver
 * pgxl_stat_bgwriter
