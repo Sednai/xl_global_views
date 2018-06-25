@@ -30,13 +30,14 @@ for r in (
     select table_name, regexp_replace(table_name, '^pg_', 'pgxl_') xl_table_name,
     'create view public.'
     || regexp_replace(table_name, '^pg_', 'pgxl_')
-    || ' as select  node_name, node_type, ' || array_to_string(array_agg(column_name::text order by ordinal_position), ',' )
+    || ' as select  node_name, node_type,' || array_to_string(array_agg(column_name::text order by ordinal_position), ',' )
     || ' from public.pgxl_global_view(''' || table_name || '''::text,''' ||array_to_string(array_agg(column_name::text order by ordinal_position),',')
     || '''::text) as (node_name text, node_type text,'
-    || array_to_string(array_agg(column_name || ' '|| replace(udt_name, 'char', '"char"') order by ordinal_position), ', ') || ');'  stmt
+    || array_to_string(array_agg(column_name || ' '|| case when udt_name = 'char' then replace(udt_name, 'char', '"char"') when udt_name = '_char' then replace(udt_name, '_char', '"_char"') else udt_name end order by ordinal_position), ', ') || ');'  stmt
     from information_schema.columns c
-        where (table_name ~ 'pg_stat' or table_name='pg_locks' or table_name = 'pg_class') and table_name !~ 'pgxl_'
-              and udt_name != 'anyarray'
+        where  (table_name ~ 'pg_stat' or table_name='pg_locks' or table_name = ANY(ARRAY['pg_class','pg_type']) ) 
+        and table_name !~ 'pgxl_'
+          and udt_name != 'anyarray' and udt_name != 'pg_node_tree'
     group by 1,2
     )
     loop
