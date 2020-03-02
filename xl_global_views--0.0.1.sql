@@ -8,7 +8,7 @@ DECLARE
 	r record;
 	rdirect record;
 BEGIN
-	for r in (select * from pgxc_node)
+	for r in (select * from pgxc_node where node_type in ('C','D'))
 	loop
 	    	qry := 'EXECUTE DIRECT ON (' || r.node_name || ') ' || '$E$ SELECT ''' || r.node_name ||'''::text,'''|| r.node_type ||'''::text,* from '|| $1 || '$E$';
 	    	FOR rdirect in EXECUTE qry LOOP
