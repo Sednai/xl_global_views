@@ -35,7 +35,7 @@ for r in (
     || '''::text) as (node_name text, node_type text,'
     || array_to_string(array_agg(column_name || ' '|| case when udt_name = 'char' then replace(udt_name, 'char', '"char"') when udt_name = '_char' then replace(udt_name, '_char', '"_char"') else udt_name end order by ordinal_position), ', ') || ');'  stmt
     from information_schema.columns c
-        where  (table_name ~ 'pg_stat' or table_name='pg_locks' or table_name = ANY(ARRAY['pg_class','pg_type']) ) 
+        where  (table_name ~ 'pg_stat|pr_prepared' or table_name='pg_locks' or table_name = ANY(ARRAY['pg_class','pg_type']) ) 
         and table_name !~ 'pgxl_'
           and udt_name != 'anyarray' and udt_name != 'pg_node_tree'
     group by 1,2
