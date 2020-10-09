@@ -10,7 +10,7 @@ DECLARE
 BEGIN
 	for r in (select * from pgxc_node where node_type in ('C','D'))
 	loop
-	    	qry := 'EXECUTE DIRECT ON (' || r.node_name || ') ' || '$E$ SELECT ''' || r.node_name ||'''::text,'''|| r.node_type ||'''::text,* from '|| $1 || '$E$';
+	    	qry := 'EXECUTE DIRECT ON (' || r.node_name || ') ' || '$E$ SELECT ''' || r.node_name ||'''::text,'''|| r.node_type ||'''::text,'|| fields || ' from '|| $1 || '$E$';
 	    	FOR rdirect in EXECUTE qry LOOP
 	    	  return next rdirect;
 	    	end loop;
