@@ -1,8 +1,10 @@
 -- complain if script is sourced in psql, rather than via CREATE EXTENSION
 \echo Use "CREATE EXTENSION xl_global_views" to load this file. \quit
 
-CREATE FUNCTION public.pgxl_global_view(localTable text, fields text) RETURNS  setof record  AS 
-$_$
+CREATE OR REPLACE FUNCTION public.pgxl_global_view(localtable text, fields text, cond text, limitGiven int default 100000)
+ RETURNS SETOF record
+ LANGUAGE plpgsql rows 1000
+AS $function$
 DECLARE
 	qry text;
 	r record;
@@ -10,15 +12,15 @@ DECLARE
 BEGIN
 	for r in (select * from pgxc_node where node_type in ('C','D'))
 	loop
-	    	qry := 'EXECUTE DIRECT ON (' || r.node_name || ') ' || '$E$ SELECT ''' || r.node_name ||'''::text,'''|| r.node_type ||'''::text,'|| fields || ' from '|| $1 || '$E$';
+	    	qry := 'EXECUTE DIRECT ON (' || r.node_name || ') ' || '$E$ SELECT ''' || r.node_name ||'''::text,'''|| r.node_type ||'''::text,'||fields ||' from '|| $1 || ' ' || cond || ' limit '|| limitGiven ||' $E$';
 	    	FOR rdirect in EXECUTE qry LOOP
 	    	  return next rdirect;
 	    	end loop;
 	end loop;
-    return;    
+    return;
 END
-$_$ LANGUAGE plpgsql;
-COMMENT ON FUNCTION pgxl_global_view(localTable text, fields text) is 'xl_global_views function to fetch data from all the nodes of the XL cluster, prefixing them with node_name and node_type.';
+$function$;
+COMMENT ON FUNCTION pgxl_global_view(localTable text, fields text, cond text, limitGiven int ) is 'xl_global_views function to fetch data from all the nodes of the XL cluster, prefixing them with node_name and node_type. One can inject conditions and limit as well.';
 
 -- create public views for anything that starts with pg_stat, omit anyarray
 CREATE FUNCTION public.pgxl_create_views() returns void as  
