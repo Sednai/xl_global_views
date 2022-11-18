@@ -41,7 +41,7 @@ end loop;
     return;
 END
 $function$
-
+;
 						   
 COMMENT ON FUNCTION pgxl_global_view(localTable text, fields text) is 'xl_global_views function to fetch data from all the nodes of the XL cluster, prefixing them with node_name and node_type. One can inject conditions. Limit is set to a default high value due to cursor limitations.';
 						   
