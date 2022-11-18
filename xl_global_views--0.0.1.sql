@@ -22,8 +22,8 @@ END
 $function$;
 COMMENT ON FUNCTION pgxl_global_view(localTable text, fields text, cond text, limitGiven int ) is 'xl_global_views function to fetch data from all the nodes of the XL cluster, prefixing them with node_name and node_type. One can inject conditions and limit as well.';
 
-CREATE OR REPLACE FUNCTION public.pgxl_global_view(localtable text, fields text
-						    RETURNS SETOF record
+CREATE OR REPLACE FUNCTION public.pgxl_global_view(localtable text, fields text)
+RETURNS SETOF record
  LANGUAGE plpgsql rows 1000
 AS $function$
 DECLARE
