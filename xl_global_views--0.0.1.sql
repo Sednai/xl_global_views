@@ -23,26 +23,27 @@ $function$;
 COMMENT ON FUNCTION pgxl_global_view(localTable text, fields text, cond text, limitGiven int ) is 'xl_global_views function to fetch data from all the nodes of the XL cluster, prefixing them with node_name and node_type. One can inject conditions and limit as well.';
 
 CREATE OR REPLACE FUNCTION public.pgxl_global_view(localtable text, fields text)
-RETURNS SETOF record
- LANGUAGE plpgsql rows 1000
+ RETURNS SETOF record
+ LANGUAGE plpgsql
 AS $function$
 DECLARE
- qry text;
- r record;
- rdirect record;
- BEGIN
- for r in (select * from pgxc_node where node_type in ('C','D'))
- loop
-     qry := 'EXECUTE DIRECT ON (' || r.node_name || ') ' || '$E$ SELECT ''' || r.node_name ||'''::text,'''|| r.node_type ||'''::text,'||fields ||' from '|| $1 || ' limit     FOR rdirect in EXECUTE qry LOOP
-       return next rdirect;
-     end loop;
- end loop;
-     return;
- END
+qry text;
+r record;
+rdirect record;
+BEGIN
+for r in (select * from pgxc_node where node_type in ('C','D'))
+loop
+    qry := 'EXECUTE DIRECT ON (' || r.node_name || ') ' || '$E$ SELECT ''' || r.node_name ||'''::text,'''|| r.node_type ||'''::text,'||fields ||' from '|| $1 || ' limit 100000-1$E$';
+    FOR rdirect in EXECUTE qry LOOP
+      return next rdirect;
+    end loop;
+end loop;
+    return;
+END
 $function$
-;
+
 						   
-COMMENT ON FUNCTION pgxl_global_view(localTable text, fields text) is 'xl_global_views function to fetch data from all the nodes of the XL cluster, prefixing them with node_name and node_type. One can inject conditions and limit as well.';
+COMMENT ON FUNCTION pgxl_global_view(localTable text, fields text) is 'xl_global_views function to fetch data from all the nodes of the XL cluster, prefixing them with node_name and node_type. One can inject conditions. Limit is set to a default high value due to cursor limitations.';
 						   
 						   
 						   
